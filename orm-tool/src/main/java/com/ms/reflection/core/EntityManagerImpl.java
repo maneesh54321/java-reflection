@@ -51,6 +51,12 @@ public class EntityManagerImpl implements EntityManager {
 						String.class, value -> (stmt, idx) -> stmt.setString(idx, (String) value)
 				);
 
+		@FunctionalInterface
+		private interface ThrowingBiConsumer<T, R, Ex extends Throwable> {
+
+			void apply(T t, R r) throws Ex;
+		}
+
 		private static final AtomicInteger atomicInteger = new AtomicInteger(0);
 
 		public <T> PreparedStatement andParameters(MetaDataModel metaDataModel, T obj)
@@ -65,12 +71,6 @@ public class EntityManagerImpl implements EntityManager {
 						.apply(preparedStatement, idx++);
 			}
 			return preparedStatement;
-		}
-
-		@FunctionalInterface
-		private interface ThrowingBiConsumer<T, R, Ex extends Throwable> {
-
-			void apply(T t, R r) throws Ex;
 		}
 
 	}

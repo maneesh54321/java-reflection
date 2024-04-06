@@ -29,6 +29,7 @@ public class Main {
 				cf.getName(), cf.getType().getSimpleName()));
 
 		// start database
+//		Server.main("-ifNotExists");
 		Server.main();
 
 		Person sita = new Person("Sita", 22);
@@ -36,7 +37,8 @@ public class Main {
 		Person suresh = new Person("Suresh", 29);
 
 		// Build entity manager
-		try(Connection connection = DriverManager.getConnection("jdbc:h2:/Users/maneesh/Work/h2/data", "sa", "");){
+//		try(Connection connection = DriverManager.getConnection("jdbc:h2:/Users/maneesh/Work/h2/data", "sa", "")){
+		try(Connection connection = DriverManager.getConnection("jdbc:h2:C:\\Users\\manee\\work\\h2", "sa", "")){
 			EntityManager entityManager = new EntityManagerImpl(connection);
 
 			entityManager.persist(ram);
