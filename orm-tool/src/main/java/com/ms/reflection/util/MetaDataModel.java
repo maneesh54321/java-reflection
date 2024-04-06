@@ -24,7 +24,7 @@ public class MetaDataModel {
 	public static MetaDataModel of(Class<?> clazz) {
 		Table tableAnn = clazz.getAnnotation(Table.class);
 		if(tableAnn == null) throw new IllegalArgumentException("The class is missing table annotation");
-		String tableName = null;
+		String tableName;
 		if(tableAnn.name() == null){
 			tableName = clazz.getSimpleName();
 		} else {

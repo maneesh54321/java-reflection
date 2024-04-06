@@ -8,7 +8,7 @@ public class SQLQueryBuilder {
 	public static String buildInsert(MetaDataModel metaDataModel) {
 		return String.format("INSERT INTO %s(%s) VALUES(%s)",
 				metaDataModel.getTableName(),
-				buildColumns(metaDataModel),
+				buildAllColumns(metaDataModel),
 				buildQuestionMarks(metaDataModel)
 		);
 	}
@@ -19,9 +19,15 @@ public class SQLQueryBuilder {
 						Collectors.joining(", "));
 	}
 
-	private static String buildColumns(MetaDataModel metaDataModel) {
+	private static String buildAllColumns(MetaDataModel metaDataModel) {
 		return metaDataModel.getPrimaryKeyField().getName() + ", "
 				+ metaDataModel.getColumnFields().stream().map(ColumnField::getName)
 				.collect(Collectors.joining(", "));
+	}
+
+	public static String buildFindByPrimaryKeySql(MetaDataModel metaDataModel) {
+		String tableName = metaDataModel.getTableName();
+		String allColumns = buildAllColumns(metaDataModel);
+		return String.format("select %s from %s where %s = ?", allColumns, tableName, metaDataModel.getPrimaryKeyField().getName());
 	}
 }

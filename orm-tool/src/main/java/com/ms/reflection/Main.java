@@ -45,6 +45,10 @@ public class Main {
 			entityManager.persist(sita);
 			entityManager.persist(mohan);
 			entityManager.persist(suresh);
+
+			Person person = entityManager.find(Person.class, 2L);
+
+			System.out.println(person);
 		}
 	}
 }

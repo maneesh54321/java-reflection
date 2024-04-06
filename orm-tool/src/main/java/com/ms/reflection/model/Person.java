@@ -8,7 +8,7 @@ import com.ms.reflection.annotation.Table;
 public class Person {
 
 	@PrimaryKey
-	private int id;
+	private long id;
 
 	@Column
 	private String name;
@@ -16,22 +16,25 @@ public class Person {
 	@Column
 	private int age;
 
+	public Person() {
+	}
+
 	public Person(String name, int age) {
 		this.name = name;
 		this.age = age;
 	}
 
-	public Person(int id, String name, int age) {
+	public Person(long id, String name, int age) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -49,5 +52,14 @@ public class Person {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", age=" + age +
+				'}';
 	}
 }
