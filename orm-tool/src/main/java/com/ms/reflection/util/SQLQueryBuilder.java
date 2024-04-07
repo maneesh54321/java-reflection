@@ -20,14 +20,14 @@ public class SQLQueryBuilder {
 	}
 
 	private static String buildAllColumns(MetaDataModel metaDataModel) {
-		return metaDataModel.getPrimaryKeyField().getName() + ", "
-				+ metaDataModel.getColumnFields().stream().map(ColumnField::getName)
+		return metaDataModel.getPrimaryKeyField().getColumnName() + ", "
+				+ metaDataModel.getColumnFields().stream().map(ColumnField::getColumnName)
 				.collect(Collectors.joining(", "));
 	}
 
 	public static String buildFindByPrimaryKeySql(MetaDataModel metaDataModel) {
 		String tableName = metaDataModel.getTableName();
 		String allColumns = buildAllColumns(metaDataModel);
-		return String.format("select %s from %s where %s = ?", allColumns, tableName, metaDataModel.getPrimaryKeyField().getName());
+		return String.format("select %s from %s where %s = ?", allColumns, tableName, metaDataModel.getPrimaryKeyField().getColumnName());
 	}
 }

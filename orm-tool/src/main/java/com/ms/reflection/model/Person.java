@@ -4,16 +4,16 @@ import com.ms.reflection.annotation.Column;
 import com.ms.reflection.annotation.PrimaryKey;
 import com.ms.reflection.annotation.Table;
 
-@Table(name="person")
+@Table(name="t_person")
 public class Person {
 
-	@PrimaryKey
+	@PrimaryKey(name="k_id")
 	private long id;
 
-	@Column
+	@Column(name="c_name")
 	private String name;
 
-	@Column
+	@Column(name = "c_age")
 	private int age;
 
 	public Person() {

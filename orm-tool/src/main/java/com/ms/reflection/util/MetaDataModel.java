@@ -9,11 +9,11 @@ import java.util.List;
 
 public class MetaDataModel {
 
-	private String tableName;
+	private final String tableName;
 
-	private PrimaryKeyField primaryKeyField;
+	private final PrimaryKeyField primaryKeyField;
 
-	private List<ColumnField> columnFields;
+	private final List<ColumnField> columnFields;
 
 	private MetaDataModel(String tableName, PrimaryKeyField primaryKeyField, List<ColumnField> columnFields) {
 		this.primaryKeyField = primaryKeyField;
@@ -33,8 +33,8 @@ public class MetaDataModel {
 		List<ColumnField> columnFields = new ArrayList<>();
 		PrimaryKeyField primaryKeyField = null;
 		for (Field field : clazz.getDeclaredFields()) {
-			PrimaryKey annotation = field.getAnnotation(PrimaryKey.class);
-			if (annotation != null) {
+			PrimaryKey primaryKeyAnn = field.getAnnotation(PrimaryKey.class);
+			if (primaryKeyAnn != null) {
 				primaryKeyField = new PrimaryKeyField(field);
 			} else {
 				Column columnAnn = field.getAnnotation(Column.class);
